@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Avaliação de Saúde de Plantas - Informações agronomia sustentável">
+    <title>PlantasAgrônomica - Avaliador de Saúde de Plantas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Skip to main content para acessibilidade -->
+    <a href="#main-content" class="skip-link">Pular para conteúdo principal</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">🌱 PlantasAgrônomica</h1>
+                <p class="tagline">Avalie a Saúde das Suas Plantas</p>
+            </div>
+            <nav class="navbar" role="navigation" aria-label="Menu principal">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu" aria-expanded="false">
+                    ☰ Menu
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#avaliador">Avaliador</a></li>
+                    <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+                    <li><a href="#plantas">Plantas</a></li>
+                    <li><a href="#preco">Preços</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Seção de boas-vindas">
+            <div class="container">
+                <h2>Bem-vindo ao Sistema de Avaliação de Plantas</h2>
+                <p>Descubra a saúde das suas plantas com apenas alguns cliques. Receba recomendações personalizadas para melhorar sua plantação.</p>
+                <button class="btn btn-primary btn-large" onclick="scrollToSection('avaliador')" aria-label="Ir para avaliador de plantas">
+                    Começar Avaliação
+                </button>
+            </div>
+        </section>
+
+        <!-- Avaliador de Saúde Section -->
+        <section id="avaliador" class="section avaliador-section" aria-labelledby="avaliador-title">
+            <div class="container">
+                <h2 id="avaliador-title" class="section-title">🏥 Avaliador de Saúde de Plantas</h2>
+                
+                <div class="avaliador-container">
+                    <!-- Formulário de Avaliação -->
+                    <form id="avaliacaoForm" class="form-avaliacao" role="form">
+                        <fieldset>
+                            <legend>Informações da Planta</legend>
+                            
+                            <div class="form-group">
+                                <label for="plantaSelect">Selecione a Planta <span aria-label="obrigatório">*</span></label>
+                                <select id="plantaSelect" required aria-describedby="planta-help">
+                                    <option value="">-- Escolha uma planta --</option>
+                                    <option value="tomate">Tomate</option>
+                                    <option value="alface">Alface</option>
+                                    <option value="batata">Batata</option>
+                                    <option value="milho">Milho</option>
+                                    <option value="feijao">Feijão</option>
+                                    <option value="cenoura">Cenoura</option>
+                                    <option value="abobora">Abóbora</option>
+                                    <option value="melancia">Melancia</option>
+                                </select>
+                                <small id="planta-help">Escolha a planta que deseja avaliar</small>
+                            </div>
+
+                            <fieldset class="form-subgroup">
+                                <legend>Condição das Folhas</legend>
+                                
+                                <div class="form-group">
+                                    <label for="corFolha">Cor das Folhas <span aria-label="obrigatório">*</span></label>
+                                    <div class="radio-group" role="group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="corFolha" value="verde-intenso" required>
+                                            Verde intenso (Saudável)
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="corFolha" value="verde-claro">
+                                            Verde claro (Alerta)
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="corFolha" value="amarelada">
+                                            Amarelada (Preocupante)
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="corFolha" value="roxeada">
+                                            Roxeada (Crítica)
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="manchasSelect">Manchas ou Lesões <span aria-label="obrigatório">*</span></label>
+                                    <div class="radio-group" role="group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="manchas" value="nenhuma" required>
+                                            Nenhuma
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="manchas" value="poucas">
+                                            Poucas manchas
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="manchas" value="muitas">
+                                            Muitas manchas
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tamanhoFolha">Tamanho das Folhas <span aria-label="obrigatório">*</span></label>
+                                    <input type="range" id="tamanhoFolha" name="tamanhoFolha" min="1" max="100" value="50" 
+                                           aria-label="Tamanho das folhas (1-100)" aria-describedby="tamanho-help">
+                                    <div class="range-labels">
+                                        <span>Pequenas</span>
+                                        <span id="tamanho-valor">50%</span>
+                                        <span>Grandes</span>
+                                    </div>
+                                    <small id="tamanho-help">Deslize para indicar o tamanho relativo das folhas</small>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="form-subgroup">
+                                <legend>Condições Ambientais</legend>
+                                
+                                <div class="form-group">
+                                    <label for="umidade">Umidade do Solo <span aria-label="obrigatório">*</span></label>
+                                    <input type="range" id="umidade" name="umidade" min="0" max="100" value="50" 
+                                           aria-label="Umidade do solo (0-100%)" aria-describedby="umidade-help">
+                                    <div class="range-labels">
+                                        <span>Seco</span>
+                                        <span id="umidade-valor">50%</span>
+                                        <span>Encharcado</span>
+                                    </div>
+                                    <small id="umidade-help">Indique o nível de umidade do solo</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="luminosidade">Exposição à Luz Solar <span aria-label="obrigatório">*</span></label>
+                                    <div class="radio-group" role="group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="luz" value="plena-sombra" required>
+                                            Plena sombra
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="luz" value="meia-sombra">
+                                            Meia sombra
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="luz" value="luz-filtrada">
+                                            Luz filtrada
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="luz" value="pleno-sol">
+                                            Pleno sol
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="temperatura">Temperatura (°C) <span aria-label="obrigatório">*</span></label>
+                                    <input type="number" id="temperatura" name="temperatura" min="0" max="50" value="25" 
+                                           aria-label="Temperatura em graus Celsius" aria-describedby="temp-help">
+                                    <small id="temp-help">Digite a temperatura aproximada em graus Celsius</small>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="form-subgroup">
+                                <legend>Observações Adicionais</legend>
+                                
+                                <div class="form-group">
+                                    <label for="pragas">Presença de Pragas <span aria-label="obrigatório">*</span></label>
+                                    <div class="radio-group" role="group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="pragas" value="nenhuma" required>
+                                            Nenhuma detectada
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="pragas" value="leve">
+                                            Infestação leve
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="pragas" value="moderada">
+                                            Infestação moderada
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="pragas" value="severa">
+                                            Infestação severa
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="observacoes">Observações Adicionais</label>
+                                    <textarea id="observacoes" name="observacoes" rows="4" 
+                                              placeholder="Descreva qualquer outro detalhe importante..." 
+                                              aria-label="Campo de observações adicionais"></textarea>
+                                </div>
+                            </fieldset>
+
+                            <div class="form-buttons">
+                                <button type="submit" class="btn btn-primary btn-large" aria-label="Enviar formulário de avaliação">
+                                    Avaliar Planta
+                                </button>
+                                <button type="reset" class="btn btn-secondary" aria-label="Limpar formulário">
+                                    Limpar
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <!-- Resultado da Avaliação -->
+                    <div id="resultadoAvaliacao" class="resultado-avaliacao" role="region" aria-live="polite" aria-label="Resultado da avaliação"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustentabilidade Section -->
+        <section id="sustentabilidade" class="section sustentabilidade-section" aria-labelledby="sustentabilidade-title">
+            <div class="container">
+                <h2 id="sustentabilidade-title" class="section-title">🌍 Práticas Sustentáveis</h2>
+                <p class="section-intro">Conheça as melhores práticas para cultivo sustentável e amigável ao meio ambiente.</p>
+                
+                <div class="grid-cards">
+                    <article class="card" aria-label="Composição de solo sustentável">
+                        <div class="card-icon">♻️</div>
+                        <h3>Composição de Solo</h3>
+                        <p>Use compostagem orgânica para enriquecer o solo. Adicione matéria orgânica regularmente para melhorar a estrutura e retenção de água.</p>
+                        <ul class="tips-list">
+                            <li>Compostagem doméstica</li>
+                            <li>Adubação verde</li>
+                            <li>Mulching natural</li>
+                            <li>Vermicompostagem</li>
+                        </ul>
+                    </article>
+
+                    <article class="card" aria-label="Conservação de água">
+                        <div class="card-icon">💧</div>
+                        <h3>Conservação de Água</h3>
+                        <p>Implemente sistemas de irrigação eficientes. Colete água da chuva e use técnicas de mulching para reduzir evaporação.</p>
+                        <ul class="tips-list">
+                            <li>Gotejamento preciso</li>
+                            <li>Coleta de água pluvial</li>
+                            <li>Mulching e cobertura</li>
+                            <li>Irrigação na madrugada</li>
+                        </ul>
+                    </article>
+
+                    <article class="card" aria-label="Controle orgânico de pragas">
+                        <div class="card-icon">🐛</div>
+                        <h3>Controle de Pragas Orgânico</h3>
+                        <p>Evite pesticidas químicos. Use métodos naturais como insetos predadores, óleos essenciais e barreiras físicas.</p>
+                        <ul class="tips-list">
+                            <li>Insetos benéficos</li>
+                            <li>Plantas repelentes</li>
+                            <li>Óleo de neem</li>
+                            <li>Telas de proteção</li>
+                        </ul>
+                    </article>
+
+                    <article class="card" aria-label="Rotação de culturas">
+                        <div class="card-icon">🔄</div>
+                        <h3>Rotação de Culturas</h3>
+                        <p>Alterne plantações para manter a saúde do solo. Reduz pragas, doenças e a necessidade de fertilizantes.</p>
+                        <ul class="tips-list">
+                            <li>Planejamento anual</li>
+                            <li>Culturas complementares</li>
+                            <li>Redução de pragas</li>
+                            <li>Ciclos naturais</li>
+                        </ul>
+                    </article>
+
+                    <article class="card" aria-label="Biodiversidade na plantação">
+                        <div class="card-icon">🦋</div>
+                        <h3>Biodiversidade</h3>
+                        <p>Cultive variedade de plantas para atrair polinizadores. Crie um ecossistema equilibrado e resiliente.</p>
+                        <ul class="tips-list">
+                            <li>Plantas melíferas</li>
+                            <li>Flores silvestres</li>
+                            <li>Habitats para insetos</li>
+                            <li>Consociação de plantas</li>
+                        </ul>
+                    </article>
+
+                    <article class="card" aria-label="Energia renovável na agricultura">
+                        <div class="card-icon">☀️</div>
+                        <h3>Energias Renováveis</h3>
+                        <p>Use energia solar e eólica para sistemas de irrigação. Reduza sua pegada de carbono na agricultura.</p>
+                        <ul class="tips-list">
+                            <li>Painéis solares</li>
+                            <li>Bombas eólicas</li>
+                            <li>Biocombustíveis</li>
+                            <li>Composteiras ativas</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plantas Section -->
+        <section id="plantas" class="section plantas-section" aria-labelledby="plantas-title">
+            <div class="container">
+                <h2 id="plantas-title" class="section-title">🌱 Base de Dados de Plantas</h2>
+                <p class="section-intro">Informações detalhadas sobre cultivos comuns e seus cuidados.</p>
+                
+                <div class="filtro-plantas">
+                    <input type="text" id="filtroPlanta" placeholder="Buscar planta..." 
+                           aria-label="Buscar plantas na base de dados" class="input-search">
+                </div>
+
+                <div id="plantasGrid" class="grid-plantas">
+                    <!-- As plantas serão carregadas dinamicamente aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Preços Section -->
+        <section id="preco" class="section preco-section" aria-labelledby="preco-title">
+            <div class="container">
+                <h2 id="preco-title" class="section-title">💰 Tabela de Preços de Venda</h2>
+                <p class="section-intro">Valores de mercado para suas produções. Consulte regularmente para melhores resultados.</p>
+                
+                <div class="filtro-preco">
+                    <label for="mesSelect">Consultar mês:</label>
+                    <select id="mesSelect" aria-label="Selecionar mês para consultar preços">
+                        <option value="janeiro">Janeiro</option>
+                        <option value="fevereiro">Fevereiro</option>
+                        <option value="marco">Março</option>
+                        <option value="abril">Abril</option>
+                        <option value="maio">Maio</option>
+                        <option value="junho">Junho</option>
+                        <option value="julho">Julho</option>
+                        <option value="agosto">Agosto</option>
+                        <option value="setembro">Setembro</option>
+                        <option value="outubro">Outubro</option>
+                        <option value="novembro">Novembro</option>
+                        <option value="dezembro">Dezembro</option>
+                    </select>
+                </div>
+
+                <div class="tabela-preco-container">
+                    <table class="tabela-preco" role="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Planta</th>
+                                <th scope="col">Unidade</th>
+                                <th scope="col">Preço Mínimo</th>
+                                <th scope="col">Preço Máximo</th>
+                                <th scope="col">Preço Médio</th>
+                                <th scope="col">Variação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaPrecos">
+                            <!-- Tabela será preenchida dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="dicas-preco" role="complementary" aria-label="Dicas para maximizar lucro">
+                    <h3>💡 Dicas para Maximizar Lucro</h3>
+                    <ul>
+                        <li>Acompanhe as tendências do mercado semanalmente</li>
+                        <li>Cultive plantas com melhor margem de lucro</li>
+                        <li>Considere cultivos complementares de menor preço para reduzir riscos</li>
+                        <li>Qualidade superior permite preços maiores</li>
+                        <li>Venda diretamente ao consumidor para melhor margem</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dicas Gerais Section -->
+        <section class="section dicas-section" aria-labelledby="dicas-title">
+            <div class="container">
+                <h2 id="dicas-title" class="section-title">📚 Dicas Importantes para Agricultores</h2>
+                
+                <div class="dicas-accordion">
+                    <details class="accordion-item">
+                        <summary class="accordion-header">Como diagnosticar deficiências nutricionais?</summary>
+                        <div class="accordion-content">
+                            <p><strong>Nitrogênio:</strong> Folhas amareladas, crescimento lento</p>
+                            <p><strong>Fósforo:</strong> Folhas roxeadas, desenvolvimento reduzido</p>
+                            <p><strong>Potássio:</strong> Bordas das folhas queimadas, frutos pequenos</p>
+                            <p><strong>Cálcio:</strong> Podridão apical (tomates), folhas deformadas</p>
+                            <p><strong>Magnésio:</strong> Clorose entre nervuras, folhas amarelas</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">Qual é o melhor período para plantar?</summary>
+                        <div class="accordion-content">
+                            <p><strong>Estação:</strong> Geralmente primavera e início do verão oferecem melhores resultados</p>
+                            <p><strong>Temperatura:</strong> A maioria das hortaliças precisa de 15-25°C</p>
+                            <p><strong>Chuva:</strong> Evite períodos de seca extrema ou encharcamento constante</p>
+                            <p><strong>Lua:</strong> Alguns agricultores seguem calendário lunar para melhores resultados</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">Como prevenir doenças fúngicas?</summary>
+                        <div class="accordion-content">
+                            <p><strong>Espaçamento:</strong> Mantenha boa circulação de ar entre plantas</p>
+                            <p><strong>Rega:</strong> Regue na base, não nas folhas, preferencialmente à noite</p>
+                            <p><strong>Limpeza:</strong> Remova folhas infectadas imediatamente</p>
+                            <p><strong>Fungicida natural:</strong> Use calda de enxofre ou borrifar com chá de gengibre</p>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">Como escolher as melhores sementes?</summary>
+                        <div class="accordion-content">
+                            <p><strong>Procedência:</strong> Compre de fornecedores confiáveis e certificados</p>
+                            <p><strong>Variedade:</strong> Escolha variedades adaptadas ao seu clima</p>
+                            <p><strong>Germinação:</strong> Verifique taxa de germinação (mínimo 80%)</p>
+                            <p><strong>Data:</strong> Sementes mais frescas têm melhor desempenho</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PlantasAgrônomica</h3>
+                    <p>Sistema inteligente de avaliação de saúde de plantas e apoio ao agricultor.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#avaliador">Avaliador</a></li>
+                        <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+                        <li><a href="#plantas">Plantas</a></li>
+                        <li><a href="#preco">Preços</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Acessibilidade</h4>
+                    <p>Este site foi desenvolvido seguindo as melhores práticas de acessibilidade WCAG 2.1.</p>
+                    <button id="increaseFontBtn" class="btn btn-small" aria-label="Aumentar tamanho da fonte">A+</button>
+                    <button id="decreaseFontBtn" class="btn btn-small" aria-label="Diminuir tamanho da fonte">A-</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PlantasAgrônomica - Projeto Agrinho. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
